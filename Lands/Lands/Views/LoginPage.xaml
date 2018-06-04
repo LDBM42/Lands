@@ -117,6 +117,7 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         HeightRequest="40"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         Text="Login"
                         TextColor="White">
                     </Button>
@@ -127,6 +128,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         HeightRequest="40"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         Text="Register"
                         TextColor="White">
                     </Button>
