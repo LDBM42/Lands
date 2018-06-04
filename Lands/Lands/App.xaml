@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--xmlns:infra="clr-namespace:Lands.Infrastructure" 
+    esto significa que cuando se busque algo llamado infra, lo buscará
+    en el proyecto Lands en el folder infrastructure-->
+<Application
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:infra="clr-namespace:Lands.Infrastructure" 
+    x:Class="Lands.App">
+	<Application.Resources>
+        <!--Application resource dictionary-->
+        <!--esto significa que InstanceLocator se encuentra en infra,
+        el cual mas arriba dice que se encuentra en Lands.Infrastructure-->
+        <!--x:key significa que la clase InstanceLocator la llamará Locator-->
+        <!--Esto nos sirve para ligar la ViewModel con esta pagina-->
+        <ResourceDictionary>
+            <infra:InstanceLocator x:Key="Locator"/>
+        </ResourceDictionary>
+        
+    
+	</Application.Resources>
+</Application>

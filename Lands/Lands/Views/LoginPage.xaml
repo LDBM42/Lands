@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Lands.Views.LoginPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Login"> <!--Para poner el titulo de la pestaña-->
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding Login}">
+            <StackLayout
+                Padding="20,30,20,0">
+                <!--
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="Lands">
+                </Label>
+                -->
+
+                <Image
+                    Source="onu"
+                    WidthRequest="200"> <!--para el tamaño-->
+                </Image>
+
+                <Grid
+                    Margin="0,20"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/> <!-- * todo el espacio-->
+                        <ColumnDefinition Width="2*"/> <!-- 2* el doble de todo el tamaño-->
+                    </Grid.ColumnDefinitions>
+
+                    <!--fila cero, comumna cero-->
+                    <Label
+                        Grid.Row="0" 
+                        Grid.Column="0"
+                        Text="E-Mail"
+                        VerticalOptions="Center"> <!--para centralizar verticalmente-->
+                    </Label>
+                    <!--fila cero, comumna 1-->
+                    <Entry 
+                        Margin="-40,0,0,0"
+                        Grid.Row="0" 
+                        Grid.Column="1"
+                        Keyboard="Email"
+                        Text="{Binding Email, Mode=TwoWay}" 
+                        Placeholder="Enter your email...">
+                        <!--Para manejar la entrada del input hay que pasarle a la propiedad Text
+                        un Binding con el nombre que se vaya a usar en el ViewModel.
+                        Para poder recibir y entrar valores, hay que poner el modificador Mode=TwoWay-->
+                    </Entry>
+
+                    <!--fila 1, comumna cero-->
+                    <Label
+                        Grid.Row="1" 
+                        Grid.Column="0"
+                        Text="Password"
+                        VerticalOptions="Center"> <!--para centralizar verticalmente-->
+                    </Label>
+                    <!--fila cero, comumna 1-->
+                    <Entry
+                        Margin="-40,0,0,0"
+                        Grid.Row="1" 
+                        Grid.Column="1"
+                        IsPassword="True"
+                        Text="{Binding Password, Mode=TwoWay}"
+                        Placeholder="Enter your password...">
+                    </Entry>
+                </Grid>
+
+                
+                <!--para que aparezca la ruedita de carga-->
+                <!--IsRunning controla la carga de esta-->
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand">
+                </ActivityIndicator>
+
+                <!--Orientation="Horizontal" para agrupar horizontalmente-->
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand"> 
+                    <!--HorizontalOptions="StartAndExpand" sirve par alinear al inicio y expandir-->
+                    
+                    <Label
+                        HorizontalOptions="StartAndExpand"
+                        Text="Remember me in this device"
+                        VerticalOptions="Center"> <!--para centralizar verticalmente-->
+                    </Label>
+                    
+                    <!--IsToggled es una propiedad del Switch que indica si está activado o no-->
+                    <Switch
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}"
+                        HorizontalOptions="End">
+                    </Switch>                    
+                </StackLayout>
+
+                <Label
+                     HorizontalOptions="Center"
+                     Text="Forgot your Password?"
+                     TextColor="Blue"
+                     VerticalOptions="CenterAndExpand">
+                </Label>
+
+                <Grid  VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                        
+                    <Button
+                        BackgroundColor="Navy"
+                        BorderRadius="10"
+                        Command="{Binding LoginCommand}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HeightRequest="40"
+                        Text="Login"
+                        TextColor="White">
+                    </Button>
+
+                    <Button
+                        BackgroundColor="Purple"
+                        BorderRadius="10"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HeightRequest="40"
+                        Text="Register"
+                        TextColor="White">
+                    </Button>
+                </Grid>
+                    
+
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
+                    <Image
+                        HorizontalOptions="Center"
+                        Source="facebookLogo"
+                        WidthRequest="73">
+                    </Image>
+                    <Image
+                        HorizontalOptions="Center"
+                        Source="twitterLogo"
+                        WidthRequest="53">
+                    </Image>
+                    <Image
+                        Margin="5,0,0,0"
+                        HorizontalOptions="Center"
+                        Source="instagramLogo"
+                        WidthRequest="58">
+                    </Image>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>
