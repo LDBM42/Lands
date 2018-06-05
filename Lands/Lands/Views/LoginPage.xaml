@@ -4,12 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Lands.Views.LoginPage"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    Title="Login"> <!--Para poner el titulo de la pestaña-->
+    Title="Lands"> <!--Para poner el titulo de la pestaña-->
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Login}">
             <StackLayout
-                Padding="20,30,20,0">
+                Padding="20,20,20,0">
                 <!--
                 <Label
                     FontAttributes="Bold"
@@ -25,7 +25,6 @@
                 </Image>
 
                 <Grid
-                    Margin="0,20"
                     VerticalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/> <!-- * todo el espacio-->
@@ -74,6 +73,7 @@
                 <!--para que aparezca la ruedita de carga-->
                 <!--IsRunning controla la carga de esta-->
                 <ActivityIndicator
+                    Margin="0,-30"
                     IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
@@ -86,7 +86,7 @@
                     
                     <Label
                         HorizontalOptions="StartAndExpand"
-                        Text="Remember me in this device"
+                        Text="Remember me on this device"
                         VerticalOptions="Center"> <!--para centralizar verticalmente-->
                     </Label>
                     
