@@ -4,12 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Lands.Views.LoginPage"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    Title="Lands"> <!--Para poner el titulo de la pestaña-->
+    Title="Login"> <!--Para poner el titulo de la pestaña-->
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Login}">
             <StackLayout
-                Padding="20,20,20,0">
+                Padding="25,25,25,0">
                 <!--
                 <Label
                     FontAttributes="Bold"

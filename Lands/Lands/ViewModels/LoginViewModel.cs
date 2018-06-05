@@ -3,6 +3,7 @@
     using GalaSoft.MvvmLight.Command;
     using System;
     using System.ComponentModel;
+    using Views;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -10,13 +11,18 @@
     {
 
         #region Atributes
+        private string email;
         private string password;
         private bool isRunning;
         private bool isEnabled;
         #endregion
 
         #region Properties
-        public string Email { get; set; }
+        public string Email
+        {
+            get { return this.email; }
+            set { SetValue(ref this.email, value); }
+        }
         public string Password
         {
             get { return this.password; }
@@ -40,6 +46,11 @@
         {
             this.IsRemembered = true;
             this.IsEnabled = true;
+
+            this.Email = "david_bm42@hotmail.com";
+            this.Password = "1234";
+
+            /* http://restcountries.eu/rest/v2/all */
         }
         #endregion
 
@@ -59,7 +70,7 @@
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error", // Titulo del Error
-                    "You mustt enter an email", // Mensage
+                    "You must enter an email", // Mensage
                     "Accept"); // Nombre del botón
 
                 return;
@@ -69,7 +80,7 @@
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error", // Titulo del Error
-                    "You mustt enter a Password", // Mensage
+                    "You must enter a Password", // Mensage
                     "Accept"); // Nombre del botón
 
                 return;
@@ -95,10 +106,13 @@
             this.IsRunning = false; // volvemos a desabilitarlo
             this.IsEnabled = true; // volvemos a activar los controles
 
-            await Application.Current.MainPage.DisplayAlert(
-                    "Ok", // Titulo del Error
-                    "Todo está Bien", // Mensage
-                    "Accept"); // Nombre del botón
+            this.Email = string.Empty;
+            this.Password = string.Empty;
+
+            // para mostrar una nueva pestaña hay que instanciarla usando el metodo Singleton
+            MainViewModel.GetInstance().Lands = new LandsViewModel();
+            //despues hay que hacer un PushAsync para mostrar esa pestaña
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
         }
         #endregion
     }
