@@ -28,7 +28,8 @@
 
             //revisa si responde al cargar google.com o cualquiera especificada
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable(
-                "google.com");
+                "https://www.google.com/");
+
             if (!isReachable)
             {
                 return new Response
