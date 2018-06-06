@@ -7,6 +7,7 @@ namespace Lands.ViewModels
         #region ViewModels
         public LoginViewModel Login { get; set; }
         public LandsViewModel Lands { get; set; }
+        public LandViewModel Land { get; set; }
         #endregion
 
         //al login ser la pagina inicial hay que instanciarla en el constructor

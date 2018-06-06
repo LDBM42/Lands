@@ -143,6 +143,11 @@
                         HorizontalOptions="Center"
                         Source="facebookLogo"
                         WidthRequest="73">
+                        <!--GestureRecognizers se usan para realizar ciertos comandos
+                            al diferentes gestos-->
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LoginFacebookCommand}"/>
+                        </Image.GestureRecognizers>
                     </Image>
                     <Image
                         HorizontalOptions="Center"

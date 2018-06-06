@@ -30,6 +30,10 @@
                                 CornerRadius="15"
                                 HasShadow="true"
                                 Margin="5">
+                                <!--Realiza una accion al hacer tap en el Frame-->
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectLandCommand}"/>
+                                </Frame.GestureRecognizers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
