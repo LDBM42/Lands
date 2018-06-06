@@ -22,7 +22,6 @@
         private ObservableCollection<LandItemViewModel> lands;
         private bool isRefreshing;
         private string filter;
-        private List<Land> landsList;
         #endregion
 
         #region Properties
@@ -103,7 +102,7 @@
             }
 
             //Convertir la lista obtenida en un ObservableColection para poder verla
-            this.landsList = (List<Land>)response.Result;
+            MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;
             //crear observableCollection
             this.Lands = new ObservableCollection<LandItemViewModel>(
                 this.ToLandItemViewModel());
@@ -116,7 +115,7 @@
         // este metodo sirve para convertir de Land a LandItemViewModel
         private IEnumerable<LandItemViewModel> ToLandItemViewModel()
         {
-            return this.landsList.Select(l => new LandItemViewModel
+            return MainViewModel.GetInstance().LandsList.Select(l => new LandItemViewModel
             {
                 Alpha2Code = l.Alpha2Code,
                 Alpha3Code = l.Alpha3Code,
