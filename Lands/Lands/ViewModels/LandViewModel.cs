@@ -11,6 +11,8 @@
         #region Attributes
         // un atributo ObservableCollection de la clase Border
         private ObservableCollection<Border> borders;
+        private ObservableCollection<Currency> currencies;
+        private ObservableCollection<Language> languages;
         #endregion
 
 
@@ -22,6 +24,16 @@
             get { return this.borders; }
             set { SetValue(ref this.borders, value); }
         }
+        public ObservableCollection<Currency> Currencies
+        {
+            get { return this.currencies; }
+            set { SetValue(ref this.currencies, value); }
+        }
+        public ObservableCollection<Language> Languages
+        {
+            get { return this.languages; }
+            set { SetValue(ref this.languages, value); }
+        }
         #endregion
 
 
@@ -30,6 +42,9 @@
         {
             this.Land = land;
             this.LoadBorders();
+            //convirtiendo una lista en una observable collection
+            this.Currencies = new ObservableCollection<Currency>(this.Land.Currencies);
+            this.Languages = new ObservableCollection<Language>(this.Land.Languages);
         }
         #endregion
 
