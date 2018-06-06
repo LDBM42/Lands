@@ -3,8 +3,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Lands.Views.LandPage"
+    Icon="ic_info"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    Title="Land">    <!--Para poner el titulo de la pestaña-->
+    Title="General Info">   <!--Para poner el titulo de la pestaña-->
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Land}">

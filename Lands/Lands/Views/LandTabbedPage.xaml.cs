@@ -4,9 +4,9 @@
     using Xamarin.Forms.Xaml;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LandsPage : ContentPage
+	public partial class LandTabbedPage : TabbedPage
 	{
-		public LandsPage ()
+		public LandTabbedPage ()
 		{
 			InitializeComponent ();
 		}
