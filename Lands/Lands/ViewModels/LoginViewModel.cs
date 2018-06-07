@@ -4,11 +4,16 @@
     using System;
     using System.ComponentModel;
     using Views;
+    using Services;
     using System.Windows.Input;
     using Xamarin.Forms;
 
+
     class LoginViewModel : BaseViewModel
     {
+        #region Services
+        private ApiService apiService;
+        #endregion
 
         #region Atributes
         private string email;
@@ -44,13 +49,11 @@
         #region Constructors
         public LoginViewModel()
         {
+            //  instanciacion del apiservice
+            this.apiService = new ApiService();
+
             this.IsRemembered = true;
             this.IsEnabled = true;
-
-            this.Email = "david_bm42@hotmail.com";
-            this.Password = "1234";
-
-            /* http://restcountries.eu/rest/v2/all */
         }
         #endregion
 
@@ -89,19 +92,62 @@
             this.IsRunning = true; //activar la ruedita de carga
             this.IsEnabled = false; // desactivar controles con esta propiedad
 
-            if (this.Email != "david_bm42@hotmail.com" || this.Password != "1234")
-             {
+            //validar si hay conexion
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
                 this.IsRunning = false; // volvemos a desabilitarlo
                 this.IsEnabled = true; // volvemos a activar los controles
 
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error", // Titulo del Error
-                    "Email or Password incorrect.", // Mensage
-                    "Accept"); // Nombre del botón
+                    "Error",
+                    connection.Message,
+                    "Accept");
+                return;
+            }
 
+            // para conseguir el token
+            //1er parametro: UrlBase del Api, 2do: UserName, 3ro: Password
+            var token = await this.apiService.GetToken(
+                "http://landsapi1.azurewebsites.net", 
+                this.Email, 
+                this.Password);
+
+            if (token == null)
+            {
+                this.IsRunning = false; // volvemos a desabilitarlo
+                this.IsEnabled = true; // volvemos a activar los controles
+
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Something was wrong, please try later.",
+                    "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(token.AccessToken))
+            {
+                this.IsRunning = false; // volvemos a desabilitarlo
+                this.IsEnabled = true; // volvemos a activar los controles
+
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    token.ErrorDescription,
+                    "Accept");
                 this.Password = string.Empty;
                 return;
             }
+
+            //esto es un apuntador para no tener que estar
+            //escribiendo MainViewModel.GetInstance()
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.Token = token;
+            // para mostrar una nueva pestaña hay que instanciarla usando el metodo Singleton
+            mainViewModel.Lands = new LandsViewModel();
+            //despues hay que hacer un PushAsync para mostrar esa pestaña
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
 
             this.IsRunning = false; // volvemos a desabilitarlo
             this.IsEnabled = true; // volvemos a activar los controles
@@ -109,10 +155,6 @@
             this.Email = string.Empty;
             this.Password = string.Empty;
 
-            // para mostrar una nueva pestaña hay que instanciarla usando el metodo Singleton
-            MainViewModel.GetInstance().Lands = new LandsViewModel();
-            //despues hay que hacer un PushAsync para mostrar esa pestaña
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
         }
         #endregion
     }
