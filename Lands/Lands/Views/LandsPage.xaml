@@ -3,9 +3,23 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Lands.Views.LandsPage"
+    
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    
     BackgroundColor="Silver"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
     Title="Lands">    <!--Para poner el titulo de la pestaña-->
+
+    <!--Diccionario de recursos para poder cargar la imagen svg-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ffimageloadingsvg:SvgImageSourceConverter
+                x:Key="SvgImageSourceConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Lands}">
@@ -36,19 +50,22 @@
                                 </Frame.GestureRecognizers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/> <!-- Auto significa que se
                                             toma el tamaño preciso que va a gastar el contenido-->
                                     </Grid.ColumnDefinitions>
                                 
-                                    <!--<ffimageloading:CachedImage 
+                                    <!--Imagen svg-->
+                                    <ffimageloading:CachedImage 
                                         Grid.Column="0"
                                         HeightRequest="30"
                                         Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
                                         WidthRequest="60">
-                                    </ffimageloading:CachedImage>-->
+                                    </ffimageloading:CachedImage>
+                                    
                                     <StackLayout 
-                                        Grid.Column="0"
+                                        Grid.Column="1"
                                         VerticalOptions="Center">
                                         <Label 
                                             FontAttributes="Bold"
@@ -62,7 +79,7 @@
                                         </Label>
                                     </StackLayout>
                                     <Image 
-                                        Grid.Column="1"
+                                        Grid.Column="2"
                                         HorizontalOptions="End" 
                                         Source="ic_chevron_right"> <!--En la columna 1 se está pintando el icono del chevron_right-->
                                     </Image>

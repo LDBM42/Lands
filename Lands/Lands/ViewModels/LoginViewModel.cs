@@ -54,6 +54,9 @@
 
             this.IsRemembered = true;
             this.IsEnabled = true;
+
+            this.Email = "juan@gmail.com";
+            this.Password = "123456";
         }
         #endregion
 
