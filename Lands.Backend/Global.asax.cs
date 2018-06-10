@@ -9,7 +9,7 @@
     {
         protected void Application_Start()
         { 
-           // this.CheckRolesAndSuperUser();
+            this.CheckRolesAndSuperUser();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

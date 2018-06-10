@@ -47,6 +47,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.12\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -199,6 +205,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Migrations\201806100456277_Initial.cs" />
+    <Compile Include="Migrations\201806100456277_Initial.Designer.cs">
+      <DependentUpon>201806100456277_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MYSQLSettings\MySQLEFConfiguration.cs" />
+    <Compile Include="MYSQLSettings\MySqlHistoryContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\UserView.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -303,6 +316,11 @@
       <Project>{f2f9cf69-3fe3-44a8-b25e-c98e60c798ea}</Project>
       <Name>Lands.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806100456277_Initial.resx">
+      <DependentUpon>201806100456277_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
