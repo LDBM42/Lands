@@ -1,10 +1,10 @@
-﻿namespace Lands.Models
+﻿namespace Lands.Domain
 {
     public class Response
     {
         //devuelve verdadero o falso dependiendo de 
         //si la respuesta fue exitosa o no
-        public bool IsSuccess 
+        public bool IsSuccess
         {
             get;
             set;

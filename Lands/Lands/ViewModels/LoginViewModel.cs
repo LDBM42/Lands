@@ -55,6 +55,7 @@
             this.IsRemembered = true;
             this.IsEnabled = true;
 
+            // esto es temporal
             this.Email = "juan@gmail.com";
             this.Password = "123456";
         }
